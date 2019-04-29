@@ -1,10 +1,11 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "Entrar", new_session_path(resource_name) , class: "btn btn-default" %><br />
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+ <%= link_to "Ainda não tem cadastro? Faça já o seu!", new_registration_path(resource_name) , class: "btn btn-link" %><br>
 <% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Cadastre-se", new_registration_path(resource_name) , class: "btn btn-primary btn-outline" %><br><br>
+<%- if controller_name != 'sessions' %>
+    <%= link_to "Já possui uma conta? Faça login!", new_session_path(resource_name) , class: "btn btn-link" %><br>
 <% end %>
+
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
   <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) , class: "btn btn-default" %><br>

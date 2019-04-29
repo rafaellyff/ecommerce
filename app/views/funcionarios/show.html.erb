@@ -16,7 +16,7 @@
 </p>
 
 <p>
-  <strong>Salário:</strong>
+  <strong>Salário (R$):</strong>
   R$ <%= @funcionario.salario.blank? ? "0.0" : number_with_precision(@funcionario.salario.blank? ? "0.0" : @funcionario.salario, :precision => 2, separator: ",", :delimiter => '.')%>
 </p>
 

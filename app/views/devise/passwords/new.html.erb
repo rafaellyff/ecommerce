@@ -14,13 +14,6 @@
 	<% end %>
 </div>
 <div class="text-center m-t">
-	<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-	  <%= link_to "Ainda não tem cadastro? Faça já o seu!", new_registration_path(resource_name) , class: "btn btn-link" %>
-	<% end %>	
-	<br>
-	<%- if controller_name != 'sessions' %>
-	  <%= link_to "Já possui uma conta? Faça login!", new_session_path(resource_name) , class: "btn btn-link" %>
-	<% end %>
-
+	<%= render "devise/shared/links" %>
 </div>
 

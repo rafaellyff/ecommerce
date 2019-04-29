@@ -2,9 +2,9 @@
 <p class="subtitle-devise">Preencha seus dados e finalize suas compras.<p>
 <div class="container-form-devise">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <% if !devise_error_messages!.blank? %>
-        <%= devise_error_messages! %>
-      <% end %>
+    <% if !devise_error_messages!.blank? %>
+      <%= devise_error_messages! %>
+    <% end %>
 
     <div class="form-group">
       <%= f.text_field :nome, class: "form-control", autofocus: true, required: true, placeholder: "Nome" %>
@@ -17,7 +17,7 @@
     <div class="form-group">
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control", required: true, placeholder: "Senha"  %>
       <% if @minimum_password_length %>
-        <em class="">(No  mínimo de <%= @minimum_password_length %> caracteres.)</em>
+        <em>(No  mínimo de <%= @minimum_password_length %> caracteres.)</em>
       <% end %>
     </div>
 
