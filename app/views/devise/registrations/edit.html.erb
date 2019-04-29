@@ -1,0 +1,43 @@
+<h2>Editar Perfil</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome, class: "form-control", autofocus: true, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", readonly: true %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "Senha" %> <i>(deixe em branco se não quiser alterá-lo)</i>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <% if @minimum_password_length %>
+      <em>Mínimo de <%= @minimum_password_length %> caracteres</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmar Senha" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, "Senha Atual"  %> <i>(É necessário informar a senha atual para confirmar suas alterações)</i>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", required: true%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar alterações", class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<%= link_to "Voltar", :back, class: "btn btn-default" %>

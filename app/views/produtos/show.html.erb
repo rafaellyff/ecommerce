@@ -1,0 +1,29 @@
+<%if !notice.blank?%>
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </div>
+<%end%>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @produto.nome %>
+</p>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @produto.descricao %>
+</p>
+
+<p>
+  <strong>Preço (R$):</strong>
+  R$ <%= @produto.preco.blank? ? "0.0" : number_with_precision(@produto.preco.blank? ? "0.0" : @produto.preco, :precision => 2, separator: ",", :delimiter => '.')%>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <%= @produto.categoria.blank? ? "" : @produto.categoria.descricao  %>
+</p>
+
+<%= link_to 'Editar', edit_produto_path(@produto), class: "btn btn-link" %> |
+<%= link_to 'Voltar', produtos_path, class: "btn btn-link"  %>

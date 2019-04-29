@@ -1,0 +1,14 @@
+<%if !notice.blank?%>
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </div>
+<%end%>
+
+<p>
+  <strong>Descrição:</strong>
+  <%= @categoria.descricao %>
+</p>
+
+<%= link_to 'Editar', edit_categoria_path(@categoria), class: "btn btn-link" %> |
+<%= link_to 'Voltar', categorias_path, class: "btn btn-link" %>

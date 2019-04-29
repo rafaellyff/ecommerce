@@ -1,0 +1,53 @@
+.main{
+	margin: 0px;
+	height: 100vh;
+	width: 100%;      
+	padding:0px;
+}
+
+.left-side{
+	padding:0px 0px 0px;
+	background:  url('background-login.jpg') no-repeat center; 
+	background-size: cover;
+	display: block;
+	height: 100%;
+}
+
+.title-devise{
+	font-family: 'Lato-Bold';
+	font-size: 36px;
+	text-align: center;
+}
+
+.subtitle-devise {
+	color: rgba(77, 79, 92, 0.5);
+	font-size: 19px;
+	text-align: center;
+}
+
+.container-devise {
+	padding-top: 100px;
+}
+
+.container-form-devise {
+	margin-top: 70px;
+}
+
+.checkbox {
+	margin-left: 20px;
+}
+
+.actions-devise {
+	margin-top: 50px;
+	text-align: center;
+}
+
+.btn-devise {
+	height: 45px;
+	width: 160px;
+	padding-top: 5px;
+}
+
+.btn-devise.btn-outline{
+	padding-top: 10px;
+}

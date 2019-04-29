@@ -1,0 +1,51 @@
+<h2 class="title-devise">Olá, seja bem-vindo!</h2>
+<p class="subtitle-devise">Entre em sua conta e faça suas compras!<p>
+
+
+<div class="container-form-devise">
+  <%if flash[:alert].present? %>
+    <p class="text-center"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Senha"  %>
+  </div>
+
+  <div class="row text-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <% if devise_mapping.rememberable? %>
+        <div class="checkbox">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me , "Lembrar-me" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="checkbox">
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) , class: "btn-link" %>
+      <% end %>
+      </div>
+    </div>
+
+  </div>
+  
+
+
+  <div class="actions actions-devise">
+    <%= f.submit "Entrar", class: "btn btn-primary btn-devise" %>
+    
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "Cadastre-se", new_registration_path(resource_name) , class: "btn btn-primary btn-outline btn-devise" %><br><br>
+    <% end %>
+  </div>
+<% end %>
+</div>
+
+
+<%#= render "devise/shared/links" %>

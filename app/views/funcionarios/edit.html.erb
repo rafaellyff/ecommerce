@@ -1,0 +1,25 @@
+<h1>Editar Funcionário</h1>
+
+<%= form_with(model: @funcionario, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome, class: "form-control", autofocus: true, required: true , value: Usuario.find(@funcionario.usuario).nome%>
+  </div>
+
+  <div class="field">
+    <%= f.label :usuario, "Email" %>
+    <%= f.email_field :usuario, class: "form-control", autocomplete: "email", readonly: true%>
+  </div>
+
+  <div class="field">
+    <%= f.label :salario, "Salário (R$)" %>
+    <%= f.text_field :salario, class: "form-control moeda", required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-default" %>
+  </div>
+<% end %>
+
+<%= link_to 'Ver', @funcionario, class: "btn btn-link" %> |
+<%= link_to 'Voltar', funcionarios_path, class: "btn btn-link" %>

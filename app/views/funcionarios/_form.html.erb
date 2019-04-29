@@ -1,0 +1,27 @@
+<%if !notice.blank?%>
+  <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Atenção!</strong> <%= notice %>
+  </div>
+<%end%>
+
+<%= form_with(model: funcionario, local: true) do |f| %>
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome, class: "form-control", autofocus: true, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :usuario, "Email" %>
+    <%= f.email_field :usuario, class: "form-control", autocomplete: "email", required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :salario, "Salário (R$)" %>
+    <%= f.text_field :salario, class: "form-control moeda", required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-default" %>
+  </div>
+<% end %>

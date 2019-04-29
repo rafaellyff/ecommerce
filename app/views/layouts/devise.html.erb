@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+   <title>Ecommerce</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'devise', media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+    <body>
+      <div class=" main" >
+        <div class="col-lg-4 col-md-5 col-sm-5 col-xs-12 left-side">
+        </div>
+        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12 right-side">
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 container-devise">
+              <%= yield %>     
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>
+
+

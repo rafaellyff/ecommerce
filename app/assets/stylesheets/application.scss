@@ -1,0 +1,91 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require font-awesome
+ */
+
+ @import "bootstrap";
+
+@font-face {
+  font-family: 'Roboto-Light';
+  src: url('fontes/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('fontes/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Bold';
+  src: url('fontes/Lato-Bold.ttf') format('truetype');
+}
+
+body {
+	font-family: 'Roboto-Regular';
+	color: #45433D;
+}
+
+a:hover, a:focus, a:active {
+	background-color: transparent;
+	color: #FAA33F;
+}
+
+.btn-link:hover {
+	color: #FAA33F;
+}
+
+.btn-primary {
+	background-color: #FAA33F;
+	border-color: #FAA33F;
+}
+
+
+.btn-primary.disabled, .btn-primary.disabled:hover, .btn-primary.disabled:focus, .btn-primary.disabled:active, .btn-primary.disabled.active, .btn-primary[disabled], .btn-primary[disabled]:hover, .btn-primary[disabled]:focus, .btn-primary[disabled]:active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary, fieldset[disabled] .btn-primary:hover, fieldset[disabled] .btn-primary:focus, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active[disabled]{
+	background-color: darken(#FAA33F, 5%)  !important;
+	border-color: darken(#FAA33F, 5%)  !important;
+
+}
+
+.btn-primary.btn-outline {
+  color: #FAA33F !important;
+}
+
+.btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
+	color: white !important;
+}
+
+.btn-outline {
+  color: inherit;
+  border-width: 2px !important;
+  background-color: transparent;
+  transition: all .5s;
+}
+
+.form{
+	padding: 50px 50px 10px 50px;
+}
+
+.form-control{
+	box-shadow: none !important;
+	border-radius: 0px !important;
+	border-bottom: 1px solid rgba(77, 79, 92, 0.5) !important;
+	border-top: 1px !important;
+	border-left: none !important;
+	border-right: none !important;
+}
+
+.form-control:focus {
+	border-color: rgba(77, 79, 92, 1) !important;
+}

@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: desenv
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  schema_search_path: ecommerce
+
+test:
+  <<: *default
+  database: ecommerce_test
+
+production:
+  <<: *default
+  database: pd
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  schema_search_path:  ecommerce
+

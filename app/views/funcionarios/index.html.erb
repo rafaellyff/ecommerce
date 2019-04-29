@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Funcionários</h1>
+
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Login</th>
+        <th>Salário</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @funcionarios.each do |funcionario| %>
+        <tr>
+          <td><%= Usuario.find(funcionario.usuario).nome %></td>
+          <td><%= funcionario.usuario %></td>
+          <td>R$ <%= funcionario.salario.blank? ? "0.0" : number_with_precision(funcionario.salario.blank? ? "0.0" : funcionario.salario, :precision => 2, separator: ",", :delimiter => '.')%>
+          </td>
+          <td><%= link_to '<i class="fa fa-search"></i> Ver'.html_safe, funcionario , class: "btn btn-default"%></td>
+          <td><%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_funcionario_path(funcionario), class: "btn btn-default" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<%= link_to '<i class="fa fa-plus"></i> Novo'.html_safe, new_funcionario_path, class: "btn btn-default" %>
