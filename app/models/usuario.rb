@@ -7,9 +7,9 @@ class Usuario < ApplicationRecord
   def self.validar_novo_email(email)
 		
 		if self.where(email: email)
-			return false
-		else
 			return true
+		else
+			return false
 		end
 
 	end

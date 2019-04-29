@@ -40,12 +40,11 @@
   <div class="actions actions-devise">
     <%= f.submit "Entrar", class: "btn btn-primary btn-devise" %>
     
-    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <%= link_to "Cadastre-se", new_registration_path(resource_name) , class: "btn btn-primary btn-outline btn-devise" %><br><br>
-    <% end %>
   </div>
 <% end %>
+  <div class="text-center m-t">  
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <%= link_to "Ainda não tem cadastro? Faça já o seu!", new_registration_path(resource_name) , class: "btn btn-link" %><br><br>
+    <% end %>
+  </div>
 </div>
-
-
-<%#= render "devise/shared/links" %>
