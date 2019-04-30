@@ -55,13 +55,13 @@ Usando esse comando você sobe o projeto no servidor local e sua aplicação já
 
 Segue abaixo como você deve executar o projeto após a primeira instalação:
 
-### Caso não existão alterações:
+#### Caso não existão alterações:
 
 > rails s 
 
 Basta subir o servidor normalmente e acessar a url http://localhost:3000/
 
-### Caso existam alterações:
+#### Caso existão alterações:
 
 > bundle install
    
