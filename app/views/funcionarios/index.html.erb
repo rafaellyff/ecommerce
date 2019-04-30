@@ -22,6 +22,7 @@
           </td>
           <td><%= link_to '<i class="fa fa-search"></i> Ver'.html_safe, funcionario , class: "btn btn-default"%></td>
           <td><%= link_to '<i class="fa fa-edit"></i> Editar'.html_safe, edit_funcionario_path(funcionario), class: "btn btn-default" %></td>
+          <td><%= link_to '<i class="fa fa-trash"></i> Deletar'.html_safe, funcionario, method: :delete, data: { confirm: 'Você tem certeza que deseja realizar essa operação?' } , class: "btn btn-default"%></td>
         </tr>
       <% end %>
     </tbody>

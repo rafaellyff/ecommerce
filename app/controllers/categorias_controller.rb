@@ -56,7 +56,7 @@ class CategoriasController < ApplicationController
   def destroy
     @categoria.update(ativo: false)
     respond_to do |format|
-      format.html { redirect_to categorias_url, notice: 'Categoria was successfully destroyed.' }
+      format.html { redirect_to categorias_url, notice: 'Categoria deletada com sucesso.' }
       format.json { head :no_content }
     end
   end

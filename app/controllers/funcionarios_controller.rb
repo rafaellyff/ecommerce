@@ -60,8 +60,9 @@ class FuncionariosController < ApplicationController
   # DELETE /funcionarios/1.json
   def destroy
     @funcionario.update(ativo: false)
+    Usuario.update(@funcionario.usuario, deactivated: true)
     respond_to do |format|
-      format.html { redirect_to funcionarios_url, notice: 'Funcionario was successfully destroyed.' }
+      format.html { redirect_to funcionarios_url, notice: 'Funcionário desativado com sucesso.' }
       format.json { head :no_content }
     end
   end
