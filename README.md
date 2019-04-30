@@ -9,9 +9,7 @@ Esse projeto foi criado com o objetivo de ser a avaliação final da disciplina 
   - [Matrícula: 397874] Rafaelly Freitas Ferreiras
 
 
-## Executando o Projeto
-
-### O que é necessário instalar?
+## O que é necessário instalar?
 
   - Ruby versão 2.2.6
   - Rails versão 5.2.3
@@ -20,7 +18,7 @@ Esse projeto foi criado com o objetivo de ser a avaliação final da disciplina 
   
 *DICA: O site a seguir possue todos os componentes necessários para a instalação https://gorails.com/setup/ubuntu/16.04*
   
-### Executando pela primeira vez:
+## Executando pela primeira vez:
 
 #### 1. Baixando o Projeto
 
@@ -53,17 +51,17 @@ Após rodar esse comando você vai ter criado todas as tabelas do seu projeto no
 
 Usando esse comando você sobe o projeto no servidor local e sua aplicação já esta pronta pra uso na url http://localhost:3000/
 
-### Executando mais vezes:
+## Executando mais vezes:
 
 Segue abaixo como você deve executar o projeto após a primeira instalação:
 
-#### Caso não existão alterações:
+### Caso não existão alterações:
 
 > rails s 
 
 Basta subir o servidor normalmente e acessar a url http://localhost:3000/
 
-#### Caso existam alterações:
+### Caso existam alterações:
 
 > bundle install
    
