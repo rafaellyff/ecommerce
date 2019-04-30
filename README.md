@@ -8,7 +8,8 @@ Esse projeto foi criado com o objetivo de ser a avaliação final da disciplina 
   - [Matrícula: 387366] Djheyson Carlos de Oliveira Assis
   - [Matrícula: 397874] Rafaelly Freitas Ferreiras
 
-## EXECUTANDO O PROJETO
+
+## Executando o Projeto
 
 ### O que é necessário instalar?
 
