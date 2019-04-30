@@ -22,7 +22,11 @@ Esse projeto foi criado com o objetivo de ser a avaliação final da disciplina 
   
 ### Executando pela primeira vez:
 
-#### 1. Criando o Banco de Dados
+### 1. Baixando o Projeto
+
+Baixe o projeto clicando no botão verde escrito "Clone or download" e escolha a forma que seja executar a operação.
+
+#### 2. Criando o Banco de Dados
 
 Na interface do PostgreSQL crie uma database com o nome **desenv** e dentro dela um schema com o nome de **ecommerce**
 
@@ -30,20 +34,20 @@ Na interface do PostgreSQL crie uma database com o nome **desenv** e dentro dela
 
 Após baixar ter baixado a aplicação na sua máquina e criado o Banco de Dados, usando o **prompt de comando** entre na pasta do projeto e continue com os passos a seguir:
 
-#### 2. Intalando as dependências do projeto
+#### 3. Intalando as dependências do projeto
 
 > bundle install
    
 Com o comando acima você estatá intalando a lista de dependências que são necessárias para esse projeto rodar.
 
 
-#### 3. Criando as tabelas no Banco de Dados
+#### 4. Criando as tabelas no Banco de Dados
 
 > rake db:migrate
 
 Após rodar esse comando você vai ter criado todas as tabelas do seu projeto no schema que você no tópico anterior.
 
-#### 4. Subindo o servidor
+#### 5. Subindo o servidor
 
 > rails s 
 
