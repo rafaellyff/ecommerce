@@ -22,7 +22,7 @@ Esse projeto foi criado com o objetivo de ser a avaliação final da disciplina 
   
 ### Executando pela primeira vez:
 
-### 1. Baixando o Projeto
+#### 1. Baixando o Projeto
 
 Baixe o projeto clicando no botão verde escrito "Clone or download" e escolha a forma que seja executar a operação.
 
