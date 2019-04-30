@@ -38,7 +38,7 @@ Após baixar ter baixado a aplicação na sua máquina e criado o Banco de Dados
 
 > bundle install
    
-Com o comando acima você estatá intalando a lista de dependências que são necessárias para esse projeto rodar.
+Com o comando acima você estatá instalando a lista de dependências que são necessárias para esse projeto rodar.
 
 
 #### 4. Criando as tabelas no Banco de Dados
@@ -52,3 +52,28 @@ Após rodar esse comando você vai ter criado todas as tabelas do seu projeto no
 > rails s 
 
 Usando esse comando você sobe o projeto no servidor local e sua aplicação já esta pronta pra uso na url http://localhost:3000/
+
+### Executando mais vezes:
+
+Segue abaixo como você deve executar o projeto após a primeira instalação:
+
+#### Caso não existão alterações:
+
+> rails s 
+
+Basta subir o servidor normalmente e acessar a url http://localhost:3000/
+
+#### Caso existam alterações:
+
+> bundle install
+   
+Para instalar qualquer nova dependência incluida na lista.
+
+> rake db:migrate
+
+Para criar tabelas ou realizar alterações feitas no Banco de Dados.
+
+> rails s 
+
+Para subir o servidor normalmente e acessando a aplicação na url http://localhost:3000/
+
