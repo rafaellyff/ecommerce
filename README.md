@@ -26,6 +26,14 @@ Baixe o projeto clicando no botão verde escrito "Clone or download" e escolha a
 
 #### 2. Criando o Banco de Dados
 
+*Obs: é necessário que o usuário e senha de acesso ao banco postgreSQL sejam alterados no arquivo database.yml*
+
+Command line:
+
+> rake db:create
+
+ou
+
 Na interface do PostgreSQL crie uma database com o nome **desenv** e dentro dela um schema com o nome de **ecommerce**
 
 *DICA: Caso deseje alterar alguma configuração relacionada a nomeclatura e configuração do banco, basta alterar a informação no arquivo database.yml*
