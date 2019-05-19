@@ -1,3 +1,46 @@
 // Place all the styles related to the produtos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.card-produto{
+	display: block;
+	max-width: 220px;
+	min-height: 350px;
+	height: auto;
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.31);
+	text-align: center;
+	padding: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+
+.card-produto{
+	img {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.descricao {
+		padding: 10px;
+	}
+
+	.nome {
+		font-family: 'Roboto-Regular';
+		color: #FAA33F;
+		font-size: 15px;
+	}
+
+	.preco {
+		font-family: 'Roboto-Light';
+		color: #45433D;
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: 550px)  and (max-width: 768px) {
+	.col-xs-12 {
+		width: 50%
+	}
+}
+

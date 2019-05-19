@@ -1,9 +1,14 @@
 class ProdutosController < ApplicationController
+  skip_before_action :authenticate_usuario!, only: [:catalogo]
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /produtos
   # GET /produtos.json
   def index
+    @produtos = Produto.where(ativo: true)
+  end
+
+  def catalogo
     @produtos = Produto.where(ativo: true)
   end
 
@@ -15,12 +20,12 @@ class ProdutosController < ApplicationController
   # GET /produtos/new
   def new
     @produto = Produto.new
-    @categoria = Categoria.all   
+    @categoria = Categoria.where(ativo: true)   
   end
 
   # GET /produtos/1/edit
   def edit
-    @categoria = Categoria.all   
+    @categoria = Categoria.where(ativo: true)   
   end
 
   # POST /produtos
@@ -71,6 +76,6 @@ class ProdutosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def produto_params
-      params.require(:produto).permit(:nome, :descricao, :preco, :categoria_id)
+      params.require(:produto).permit(:nome, :descricao, :preco, :categoria_id, :foto)
     end
 end

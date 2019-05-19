@@ -77,3 +77,6 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'jquery-rails'
 
 gem 'jquery-turbolinks'
+
+# UPLOAD DE ARQUIVO
+gem "paperclip", "~> 6.0.0"
