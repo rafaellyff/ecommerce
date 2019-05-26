@@ -8,6 +8,7 @@
         </button>
         <a href="#" class="navbar-brand" style="background-color: #FAA33F; color: white">Ecommerce</a>
     </div>
+
     
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
@@ -41,11 +42,13 @@
             </ul>
         <%elsif !current_usuario.blank? %>
             <ul class="nav navbar-nav navbar-right">
+                 <li><a><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                 <li><%= link_to '<i class="fa fa-user"></i> Perfil'.html_safe, edit_usuario_registration_path%></li>
                 <li><%= link_to '<i class="fa fa-sign-out"></i> Sair'.html_safe, destroy_usuario_session_path, :method => :delete %></li>
             </ul>
         <%else%>
             <ul class="nav navbar-nav navbar-right">
+                <li><a><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                 <li><%= link_to "Cadastre-se", new_usuario_registration_path %></li>
                 <li><%= link_to "Entrar", new_usuario_session_path %></li>
             </ul>
