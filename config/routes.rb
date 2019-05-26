@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :funcionarios
   resources :produtos do
   	collection do 
-      match 'catalogo', via: :get
+      get 'catalogo'
     end
   end
   resources :categorias

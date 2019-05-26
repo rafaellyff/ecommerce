@@ -28,6 +28,7 @@ class FuncionariosController < ApplicationController
     if Usuario.validar_novo_email(params[:funcionario][:usuario])
       @funcionario.usuario = params[:funcionario][:usuario]
       @usuario = Usuario.invite!(:email => params[:funcionario][:usuario] , :nome => params[:funcionario][:nome])
+      @usuario.update(admin: true)
       respond_to do |format|
         if @funcionario.save
           format.html { redirect_to @funcionario, notice: 'Funcionário cadastrado com sucesso.' }
