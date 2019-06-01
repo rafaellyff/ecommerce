@@ -45,3 +45,33 @@ $( document ).on('turbolinks:load', function() {
     $('.moeda').bind('keypress',mask.money)
   });
 });
+
+function adiciona_carrinho(produto) {
+  var carrinho = []
+  var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
+
+  if (carrinho_log != null)
+    carrinho = carrinho_log
+
+  carrinho.push(JSON.parse(produto));
+  
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+}
+
+function remove_carrinho(produto) {
+  var carrinho = []
+  var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
+
+  if (carrinho_log != null)
+    carrinho = carrinho_log
+
+  carrinho.filter(prod => prod.id != produto.id);
+  
+  localStorage.setItem('carrinho', JSON.stringify(carrinho));
+}
+
+// $(document).ready(function(){
+//   $("#add-carrinho").click(function(){
+//     alert("The paragraph was clicked.");
+//   });
+// });
