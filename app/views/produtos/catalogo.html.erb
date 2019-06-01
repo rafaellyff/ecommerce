@@ -9,11 +9,14 @@
 						<p class="nome"><%= produto.nome.truncate(40, omission: '...')%></p>
 						<p class="preco">R$ <%= produto.preco.blank? ? "0.0" : number_with_precision(produto.preco.blank? ? "0.0" : produto.preco, :precision => 2, separator: ",", :delimiter => '.')%></p>
 
-						<button class="btn btn-primary"><i class="fa fa-eye"></i></button>
+						<button class="btn btn-primary" data-toggle="modal" data-target="#produto_<%=produto.id%>"><i class="fa fa-eye"></i></button>
 						<button class="btn btn-primary"><i class="fa fa-cart-plus"></i></button>
 					</div>
 				</div>
-			</div>
+			</div>	
 		<%end%>
 	</div>
 </div>
+
+<%= render 'produtos/modal_detalhes' %>
+

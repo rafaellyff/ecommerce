@@ -6,8 +6,8 @@ default: &default
 development:
   <<: *default
   database: desenv
-  username: djeisu
-  password: root
+  username: postgres
+  password: postgres
   host: localhost
   port: 5432
 
@@ -18,8 +18,8 @@ test:
 production:
   <<: *default
   database: pd
-  username: djeisu
-  password: root
+  username: postgres
+  password: postgres
   host: localhost
   port: 5432
 

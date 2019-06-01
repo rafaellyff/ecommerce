@@ -117,6 +117,14 @@ a:hover, a:focus, a:active {
   margin-top: 40px;
 }
 
+.no-margins{
+	margin: 0px;
+}
+
+.no-margins-top{
+	margin-top: 0px;
+}
+
 .table > thead > tr > th,
 .table > thead > tr > td,
 .table > tbody > tr > th,
@@ -125,3 +133,23 @@ a:hover, a:focus, a:active {
 .table > tfoot > tr > td {
   vertical-align: middle;
 }
+
+
+// TIPOGRÁFIA
+
+.font-roboto-l {
+  font-family: 'Roboto-Light';
+}
+
+.font-roboto {
+  font-family: 'Roboto-Regular';
+}
+
+.font-lato {
+  font-family: 'Lato-Bold';
+}
+
+.color-primary{
+	color: #FAA33F;
+}
+
