@@ -56,6 +56,8 @@ function adiciona_carrinho(produto) {
   carrinho.push(JSON.parse(produto));
   
   localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  console.log('aqui');
+  console.log(carrinho);
 }
 
 function remove_carrinho(produto) {
