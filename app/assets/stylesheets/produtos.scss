@@ -68,3 +68,32 @@
 .form-qtde:focus {
 	border-color: rgba(77, 79, 92, 1) !important;
 }
+
+.carrinho-produto {
+	border: 1px solid rgb(127, 0, 0);
+	border: 1px solid rgba(0, 0, 0, .1);
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	padding: 1.0rem;
+  border-radius: 3px;
+  display: flex;
+  margin: 10px 0;
+
+	.carrinho-produto-body {
+
+    .carrinho-produto-img {
+      width: 30%;
+      height: auto;
+      display: block;
+      float: left;
+    }
+
+    .carrinho-produto-info {
+      width: 70%;
+      height: auto;
+      display: block;
+      float: left;
+      padding: 0 1.5rem;
+    }
+	}
+}
