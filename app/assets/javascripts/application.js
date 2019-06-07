@@ -87,7 +87,7 @@ function montar_carrinho() {
   if (carrinho_log.length != 0)
     $(".carrinho-footer").append(`
       <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-      <button type="button" class="btn btn-primary">Finalizar Compra</button>
+      <button type="button" class="btn btn-primary" id="finalizar-compra">Finalizar Compra</button>
     `);
   else
     $(".carrinho-footer").append(`
@@ -95,14 +95,18 @@ function montar_carrinho() {
     `);
 
   var preco_total = 0;
-  carrinho_log.forEach(produto => {
+  var a = jQuery.unique(carrinho_log)
+  
+  var carrinho_filter = carrinho_log.reduce((x, y) => x.findIndex(e=>e.id==y.id)<0 ? [...x, y]: x, [])
+  
+  carrinho_filter.forEach(produto => {
     var qtd = carrinho_log.filter(prod => prod.id == produto.id).length;
     var produto_html = `
       <div class="col-12">
         <div class="carrinho-produto">
           <div class="carrinho-produto-body">
             <div class='carrinho-produto-img'>
-              <img alt="image" class="img-responsive" src="https://images-americanas.b2w.io/produtos/01/00/sku/43816/4/43816428_1SZ.jpg">
+              <img alt="image" class="img-responsive" src="/system/produtos/fotos/000/000/00`+produto.id+`/medium/`+ produto.foto_file_name +`" id="prod-`+produto.id+`">
             </div>
             <div class='carrinho-produto-info'>
               <h5 class="card-title">` + produto.nome + `</h5>
@@ -114,16 +118,32 @@ function montar_carrinho() {
           </div>
         </div>
       </div>
-    `;
-    preco_total += parseFloat(produto.preco);
-    $(".carrinho-body").append(produto_html);
+      `;
+      preco_total += parseFloat(produto.preco) * qtd;
+      $(".carrinho-body").append(produto_html);
   });
 
-  $(".carrinho-body").append("<p>Total: R$ " + preco_total +"</p>");
+  $(".carrinho-footer").append(`
+    <div class='content-price-carrinho'>
+      <span class='price-total'>Total: R$ ` + preco_total + `</span>
+    </div>
+    `);
 }
 
 $(document).ready(function(){
   $("#open-carrinho").click(function(){
     montar_carrinho();
+
+    $("#finalizar-compra").click(function(){
+      tempData = localStorage.getItem('carrinho');
+      $.ajax({
+        url: "/api/v1/people.json",
+        type: "POST",
+        data: tempData,
+        success: function(data) {
+          console.log(data);
+        }
+      });
+    });
   });
 });
