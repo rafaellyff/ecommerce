@@ -3,12 +3,12 @@ class ComprasController < ApplicationController
 
 
   def minhas_compras
-    @compras = Compra.where(usuario: current_usuario.email,ativo: true)
+    @compras = Compra.where(usuario: current_usuario.email,ativo: true).order(data: :desc)
   end
   # GET /compras
   # GET /compras.json
   def index
-    @compras = Compra.where(ativo: true)
+    @compras = Compra.where(ativo: true).order(data: :desc)
   end
 
   def finalizar_compra
@@ -47,7 +47,7 @@ class ComprasController < ApplicationController
         @produtos.each do |produto|
           ItensCompra.create(compra_id: @compra.id, produto_id: produto[:produto][:id], valor: produto[:produto][:preco],quantidade: produto[:qtde])
         end
-        format.html { redirect_to @compra, notice: 'Compra was successfully created.' }
+        format.html { redirect_to @compra, notice: 'Compra efetuada com sucesso.' }
         format.json { render :show, status: :created, location: @compra }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class ComprasController < ApplicationController
   def update
     respond_to do |format|
       if @compra.update(compra_params)
-        format.html { redirect_to @compra, notice: 'Compra was successfully updated.' }
+        format.html { redirect_to @compra, notice: 'Compra alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @compra }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class ComprasController < ApplicationController
   def destroy
     @compra.update(ativo: false)
     respond_to do |format|
-      format.html { redirect_to compras_url, notice: 'Compra was successfully destroyed.' }
+      format.html { redirect_to compras_url, notice: 'Compra excluída com sucesso.' }
       format.json { head :no_content }
     end
   end

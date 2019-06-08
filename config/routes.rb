@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       match 'minhas_compras', via: [:get, :post]
     end
   end
-  resources :funcionarios
+  resources :funcionarios do
+    collection do 
+      get 'acesso_restrito'
+    end
+  end
   resources :produtos do
   	collection do 
       get 'catalogo'

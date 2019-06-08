@@ -3,6 +3,12 @@
 <hr>
 <div class="row">
   <div class="col-lg-6">
+    <%if current_usuario.admin?%>
+      <p>
+        <strong>Cliente:</strong>
+        <%= Usuario.find(@compra.usuario).nome %> (<%= Usuario.find(@compra.usuario).email %>)
+      </p>
+    <%end%>
     <p>
       <strong>Realizada em:</strong>
       <%= @compra.data.strftime("%d/%m/%Y") %> - <%= @compra.hora.strftime("%H:%M") %>
