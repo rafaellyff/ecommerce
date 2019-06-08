@@ -125,6 +125,10 @@ a:hover, a:focus, a:active {
 	margin-top: 0px;
 }
 
+.m-b-lg {
+  margin-bottom: 30px;
+}
+
 .table > thead > tr > th,
 .table > thead > tr > td,
 .table > tbody > tr > th,
@@ -153,3 +157,209 @@ a:hover, a:focus, a:active {
 	color: #FAA33F;
 }
 
+
+// FINALIZAR COMPRA
+
+.wizard {
+  margin: 0px auto;
+  background: #fff;
+}
+
+.wizard .nav-tabs {
+  position: relative;
+  margin: auto;
+  margin-bottom: 0;
+  border-bottom-color: #e0e0e0;
+}
+
+.wizard > div.wizard-inner {
+  position: relative;
+}
+
+.connecting-line {
+  height: 2px;
+  background: #e0e0e0;
+  position: absolute;
+  width: 80%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 40%;
+  z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+  color: #555555;
+  cursor: default;
+  border: 0;
+  border-bottom-color: transparent;
+}
+
+span.round-tab {
+  width: 60px;
+  height: 60px;
+  line-height: 55px;
+  display: inline-block;
+  border-radius: 100px;
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  z-index: 2;
+  position: absolute;
+  left: 0;
+  text-align: center;
+  font-size: 22px;
+}
+span.round-tab i{
+  color:#555555;
+}
+.wizard li.active span.round-tab {
+  background: #fff;
+  border: 2px solid #FAA33F;
+  
+}
+.wizard li.active span.round-tab i{
+  color: #FAA33F;
+}
+
+span.round-tab:hover {
+  color: #45433D;
+  border: 2px solid #45433D;
+}
+
+.wizard .nav-tabs > li {
+  width: 25%;
+}
+
+.wizard li:after {
+  content: " ";
+  position: absolute;
+  left: 46%;
+  opacity: 0;
+  margin: 0 auto;
+  bottom: 0px;
+  border: 5px solid transparent;
+  border-bottom-color: #FAA33F;
+  transition: 0.1s ease-in-out;
+}
+
+.wizard li.active:after {
+  content: " ";
+  position: absolute;
+  left: 46%;
+  opacity: 1;
+  margin: 0 auto;
+  bottom: 0px;
+  border: 10px solid transparent;
+  border-bottom-color: #FAA33F;
+}
+
+.wizard .nav-tabs > li a {
+  width: 60px;
+  height: 60px;
+  margin: 0px auto 20px auto;
+  border-radius: 100%;
+  padding: 0;
+}
+
+.wizard .nav-tabs > li a:hover {
+  background: transparent;
+}
+
+.wizard .tab-pane {
+  position: relative;
+  padding-top: 40px;
+}
+
+.wizard h3 {
+  margin-top: 0;
+}
+
+@media( max-width : 585px ) {
+
+  .wizard {
+    width: 90%;
+    height: auto !important;
+  }
+
+  span.round-tab {
+    font-size: 16px;
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+  }
+
+  .wizard .nav-tabs > li a {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  .wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 35%;
+  }
+}
+
+// CHECKROUND
+
+.radio { 
+  display: block;
+  position: relative;
+  padding-top: 5px;
+  padding-left: 30px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-weight: initial;
+  color: #45433D;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkround {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: 19px;
+  width: 19px;
+  background-color: #fff ;
+  border-color: #45433D;
+  border-style:solid;
+  border-width: 1px;
+  border-radius: 50%;
+}
+
+
+.radio input:checked ~ .checkround {
+  background-color: #fff;
+  border-color: #FAA33F;
+}
+
+.checkround:after {
+  content: "";
+  position: absolute;
+  display: none;
+
+}
+
+.radio input:checked ~ .checkround:after {
+  display: block;
+}
+
+.radio .checkround:after {
+  left: 2px;
+  top: 2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #FAA33F;
+}

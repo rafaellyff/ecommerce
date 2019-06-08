@@ -1,0 +1,221 @@
+<div class="row">
+  <section class="col-lg-8 col-lg-offset-2">
+    <div class="wizard">
+      <div class="wizard-inner">
+        <div class="connecting-line"></div>
+        <ul class="nav nav-tabs" role="tablist">
+
+          <li role="presentation" class="active">
+            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Carrinho">
+              <span class="round-tab">
+                <i class="fa fa-shopping-cart"></i>
+              </span>
+            </a>
+          </li>
+
+          <li role="presentation" class="disabled">
+            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Entrega">
+              <span class="round-tab">
+                <i class="fa fa-map-marker"></i>
+              </span>
+            </a>
+          </li>
+
+          <li role="presentation" class="disabled">
+            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Conferir">
+              <span class="round-tab">
+                <i class="fa fa-check"></i>
+              </span>
+            </a>
+          </li>
+
+          <li role="presentation" class="disabled">
+            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Pagamento">
+              <span class="round-tab">
+                <i class="fa fa-dollar"></i>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <%= form_with(model: @compra, local: true) do |form| %>
+        <% if @compra.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@compra.errors.count, "error") %> prohibited this compra from being saved:</h2>
+
+            <ul>
+              <% @compra.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <form role="form">
+          <div class="tab-content">
+            <div class="tab-pane active" role="tabpanel" id="step1">
+              <h4 class="font-lato no-margins">
+                Você tem <span class="color-primary"><%= @produtos.count%> itens</span> no seu carrinho
+              </h4>
+              <%= hidden_field_tag :produtos, @produtos.to_s%>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Preço (R$)</th>
+                      <th>Quantidade</th>
+                      <th class="text-center">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%valor_total = 0%>
+                    <% @produtos.each do |produto| %>
+                      <tr>
+                        <td><img alt="image" class="img-responsive" src="<%= produto[:produto].foto.url(:thumb)%>"/></td>
+                        <td><%= produto[:produto][:nome] %></td>
+                        <td>R$ <%= produto[:produto][:preco].blank? ? "0.0" : number_with_precision(produto[:produto][:preco].blank? ? "0.0" : produto[:produto][:preco], :precision => 2, separator: ",", :delimiter => '.')%></td>
+                        <td class="text-center"><%= produto[:qtde]%></td>
+                        <% total = produto[:qtde].to_i*produto[:produto][:preco].to_f %>
+                        <td>R$ <%= number_with_precision(total, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                      </tr>
+                      <%valor_total =  valor_total + total%>
+                    <% end %>
+                  </tbody>
+                </table>
+                <%= form.hidden_field :valor_total, value: valor_total%>
+                <%= form.hidden_field :usuario, value: current_usuario.email%>
+              </div>  
+              <ul class="list-inline  text-center m-t-lg">
+                <li><button type="button" class="btn btn-primary next-step">Próximo</button></li>
+              </ul>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="step2">
+              <h4 class="font-lato no-margins text-center color-primary m-b-lg">Informações de Entrega </h4>
+              <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="form-group">
+                        <%= form.label :estado %>
+                        <%= form.text_field :estado, class: "form-control", :required => true  %>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                      <div class="form-group">
+                        <%= form.label :cidade %>
+                        <%= form.text_field :cidade, class: "form-control", :required => true  %>
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <%= form.label :endereco, "Endereço" %>
+                    <%= form.text_field :endereco, class: "form-control", :required => true  %>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-5 col-sm-5">
+                      <div class="form-group">
+                        <%= form.label :cep, "CEP" %>
+                        <%= form.text_field :cep, class: "form-control cep", :required => true %>
+                      </div> 
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-7">  
+                      <div class="form-group">
+                        <%= form.label :contato %>
+                        <%= form.text_field :contato, class: "form-control contato", :required => true  , placeholder: "(00) 00000-0000"%>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="list-inline text-center m-t-lg">
+                    <li><button type="button" class="btn btn-default prev-step">Voltar</button></li>
+                    <li><button type="button" class="btn btn-primary next-step">Próximo</button></li>
+                  </ul>
+                </div>                        
+              </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="step3">
+              <h4 class="font-lato no-margins text-center color-primary m-b-lg">Conferir Valores</h4>
+              <div class="row">
+                <div class="col-lg-6 col-lg-offset-3"> 
+                  <div class="table-responsive">
+                    <table class="table table-hover">                  
+                      <tbody>
+                        <tr>
+                          <td>(+) Valor da Compra</td>
+                          <td>R$ <%= number_with_precision(valor_total, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                        </tr>
+                        <tr>
+                          <td>(+) Valor do Frete</td>
+                          <td>R$ 50,00</td>
+                        </tr>
+                        <tr>
+                          <td>(=) Valor Total</td>
+                          <td>R$ <%= number_with_precision(valor_total + 50.0, :precision => 2, separator: ",", :delimiter => '.')%></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <ul class="list-inline text-center m-t-lg">
+                    <li><button type="button" class="btn btn-default prev-step">Voltar</button></li>
+                    <li><button type="button" class="btn btn-primary next-step">Próximo</button></li>  
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" role="tabpanel" id="complete">
+              <h4 class="font-lato no-margins  text-center color-primary m-b-lg">Forma de Pagamento</h4>
+              <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                  <div class="field m-b-lg">
+                    <label class="radio">Boleto
+                      <%= form.radio_button :forma_pagamento, "Boleto",class: "checkround", :checked => true %>
+                      <span class="checkround"></span>
+                    </label>
+                    <label class="radio">Cartão de Crédito
+                      <%= form.radio_button :forma_pagamento, "Cartão de Crédito",class: "checkround" %>
+                      <span class="checkround"></span>
+                    </label>
+                  </div>
+                  <br>
+                  <div id="info-boleto">
+                    <a class="btn btn-primary btn-lg" href="<%=image_url('boleto.pdf')%>" download> <i class="fa fa-download"></i> Baixar Boleto</a>
+                  </div>
+                  <div id="info-cartao" style="display: none;">
+                    <div class="form-group">
+                      <%= form.label :numero_cartao, "Nº do Cartão"  %>
+                      <%= form.text_field :numero_cartao, class: "form-control cartao", placeholder: "0000 0000 0000 0000" %>
+                    </div>
+                    <div class="form-group">
+                      <%= form.label :nome_titular, "Nome do Títular" %>
+                      <%= form.text_field :nome_titular, class: "form-control" %>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <%= form.label :data_validade, "Data de Validade" %>
+                          <%= form.text_field :data_validade, class: "form-control validade", placeholder: "00/00" %>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <div class="form-group">
+                          <%= form.label :ccv, "CCV" %>
+                          <%= form.text_field :ccv, class: "form-control ccv", placeholder: "000" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="list-inline  text-center m-t-lg">
+                    <li><button type="button" class="btn btn-default prev-step">Voltar</button></li>
+                    <li><%= form.submit "Finalizar" , class: "btn btn-primary" %></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      <%end%>
+    </div>
+  </section>
+</div>
+

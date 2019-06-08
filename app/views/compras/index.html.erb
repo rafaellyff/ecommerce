@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Compras</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Data</th>
+      <th>Hora</th>
+      <th>Valor total</th>
+      <th>Estado</th>
+      <th>Cidade</th>
+      <th>Cep</th>
+      <th>Endereco</th>
+      <th>Contato</th>
+      <th>Forma pagamento</th>
+      <th>Numero cartao</th>
+      <th>Nome titular</th>
+      <th>Data validade</th>
+      <th>Ccv</th>
+      <th>Ativo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compras.each do |compra| %>
+      <tr>
+        <td><%= compra.usuario %></td>
+        <td><%= compra.data %></td>
+        <td><%= compra.hora %></td>
+        <td><%= compra.valor_total %></td>
+        <td><%= compra.estado %></td>
+        <td><%= compra.cidade %></td>
+        <td><%= compra.cep %></td>
+        <td><%= compra.endereco %></td>
+        <td><%= compra.contato %></td>
+        <td><%= compra.forma_pagamento %></td>
+        <td><%= compra.numero_cartao %></td>
+        <td><%= compra.nome_titular %></td>
+        <td><%= compra.data_validade %></td>
+        <td><%= compra.ccv %></td>
+        <td><%= compra.ativo %></td>
+        <td><%= link_to 'Show', compra %></td>
+        <td><%= link_to 'Edit', edit_compra_path(compra) %></td>
+        <td><%= link_to 'Destroy', compra, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compra', new_compra_path %>
+
+

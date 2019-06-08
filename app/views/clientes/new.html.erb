@@ -1,0 +1,27 @@
+<%if !notice.blank?%>
+  <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Atenção!</strong> <%= notice %>
+  </div>
+<%end%>
+
+<p>Ao cadatrar o seu cliente ele já recebe um email para confirmar seu acesso! É simples e rápido! </p>
+<br>
+
+<%= form_with(url: "/clientes/criar", method: "get") do |f| %>
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome, class: "form-control", autofocus: true, required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, class: "form-control", autocomplete: "email", required: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= link_to 'Voltar', clientes_path, class: "btn btn-link" %>

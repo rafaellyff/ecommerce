@@ -17,9 +17,11 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require jquery.mask
 //= require_tree .
 
 $( document ).on('turbolinks:load', function() {
+
  var mask = {
       money: function() {
         var el = this
@@ -127,3 +129,58 @@ $(document).ready(function(){
     montar_carrinho();
   });
 });
+
+
+
+$(document).ready(function () {
+
+  $( ".checkround" ).click(function() {
+    if ($("#compra_forma_pagamento_cartão_de_crédito").is(":checked")) {
+      $("#info-cartao").show();
+      $("#info-boleto").hide();
+    } else{
+      $("#info-cartao").hide();
+      $("#info-boleto").show();
+    }
+  }); 
+
+  $(".cartao").mask("0000 0000 0000 0000");
+  $(".validade").mask("00/00");
+  $(".ccv").mask("000");
+  $(".cep").mask("00.000-000");
+  $(".contato").mask("(00) 00000-0000");
+
+  //Initialize tooltips
+  $('.nav-tabs > li a[title]').tooltip();
+  
+  //Wizard
+  $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+    var $target = $(e.target);
+
+    if ($target.parent().hasClass('disabled')) {
+      return false;
+    }
+  });
+
+  $(".next-step").click(function (e) {
+
+    var $active = $('.wizard .nav-tabs li.active');
+    $active.next().removeClass('disabled');
+    nextTab($active);
+
+  });
+  $(".prev-step").click(function (e) {
+
+    var $active = $('.wizard .nav-tabs li.active');
+    prevTab($active);
+
+  });
+});
+
+function nextTab(elem) {
+  $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+  $(elem).prev().find('a[data-toggle="tab"]').click();
+}

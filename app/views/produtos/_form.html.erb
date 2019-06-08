@@ -18,17 +18,17 @@
 
   <div class="field">
     <%= form.label :nome %>
-    <%= form.text_field :nome, class: "form-control" %>
+    <%= form.text_field :nome, class: "form-control", :required => true  %>
   </div>
 
   <div class="field">
     <%= form.label :descricao, "Descrição" %>
-    <%= form.text_field :descricao, class: "form-control" %>
+    <%= form.text_field :descricao, class: "form-control", :required => true  %>
   </div>
 
   <div class="field">
     <%= form.label :preco, "Preço (R$)" %>
-    <%= form.text_field :preco, class: "form-control moeda" %>
+    <%= form.text_field :preco, class: "form-control moeda", :required => true  %>
   </div>
 
   <div class="field">

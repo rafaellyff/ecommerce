@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario: MyString
+  data: 2019-06-04
+  hora: 2019-06-04 23:10:43
+  valor_total: 9.99
+  estado: MyString
+  cidade: MyString
+  cep: MyString
+  endereco: MyString
+  contato: MyString
+  forma_pagamento: MyString
+  numero_cartao: 1
+  nome_titular: MyString
+  data_validade: MyString
+  ccv: 1
+  ativo: false
+
+two:
+  usuario: MyString
+  data: 2019-06-04
+  hora: 2019-06-04 23:10:43
+  valor_total: 9.99
+  estado: MyString
+  cidade: MyString
+  cep: MyString
+  endereco: MyString
+  contato: MyString
+  forma_pagamento: MyString
+  numero_cartao: 1
+  nome_titular: MyString
+  data_validade: MyString
+  ccv: 1
+  ativo: false

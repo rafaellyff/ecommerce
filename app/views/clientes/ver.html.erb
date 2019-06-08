@@ -1,0 +1,19 @@
+<%if !notice.blank?%>
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </div>
+<%end%>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @cliente.nome %>
+</p>
+
+<p>
+  <strong>Login:</strong>
+  <%= @cliente.email %>
+</p>
+
+<%= link_to 'Editar', editar_clientes_path(email: @cliente.email), class: "btn btn-link" %> |
+<%= link_to 'Voltar', clientes_path, class: "btn btn-link" %>

@@ -1,0 +1,28 @@
+<h1>Minhas Compras</h1><br>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Valor (R$)</th>
+        <th>Forma de Pagamento</th>
+        <th>Entrega</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @compras.each do |compra| %>
+        <tr>
+          <td><%= compra.data.strftime("%d/%m/%Y") %></td>
+          <td>R$ <%= compra.valor_total.blank? ? "0.0" : number_with_precision(compra.valor_total.blank? ? "0.0" : compra.valor_total, :precision => 2, separator: ",", :delimiter => '.')%></td>
+          <td><%= compra.forma_pagamento %></td>
+          <td><%= compra.endereco + ", "+compra.cidade + ", "+ compra.estado + " (" + compra.cep + ")"%></td>
+          <td><%= compra.status %></td>
+          <td><%= link_to '<i class="fa fa-search"></i> Ver'.html_safe, compra , class: "btn btn-default"%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

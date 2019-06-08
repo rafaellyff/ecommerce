@@ -80,3 +80,5 @@ gem 'jquery-turbolinks'
 
 # UPLOAD DE ARQUIVO
 gem "paperclip", "~> 6.0.0"
+
+gem 'jquery_mask_rails' 
