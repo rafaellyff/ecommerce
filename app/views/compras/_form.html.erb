@@ -99,7 +99,6 @@
                   </tbody>
                 </table>
                 <%= form.hidden_field :valor_total, value: valor_total%>
-                <%= form.hidden_field :usuario, value: current_usuario.email%>
               </div>  
               <ul class="list-inline  text-center m-t-lg">
                 <li><button type="button" class="btn btn-primary next-step">Próximo</button></li>
@@ -169,6 +168,13 @@
                         </tr>
                       </tbody>
                     </table>
+                    <%if current_usuario.admin?%>
+                      <br>
+                      <h4 class="font-lato no-margins text-center color-primary m-b-lg"> Informar Cliente</h4>
+                      <%= form.select :usuario, Usuario.where("admin =? AND (deactivated =? OR deactivated IS NULL)", false, false).collect {|u| [u.nome + " - " + u.email , u.email]}, {:prompt => 'Selecione o Cliente'}, class: "form-control", :required => true %>
+                    <%else%>
+                      <%= form.hidden_field :usuario, value: current_usuario.email%>
+                    <%end%>
                   </div>
                   <ul class="list-inline text-center m-t-lg">
                     <li><button type="button" class="btn btn-default prev-step">Voltar</button></li>

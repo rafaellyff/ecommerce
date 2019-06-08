@@ -1,5 +1,7 @@
-<h1>New Compra</h1>
+<h1 class="text-center">Compra Presencial</h1><br>
 
 <%= render 'form', compra: @compra %>
 
-<%= link_to 'Back', compras_path %>
+<div class="text-center">
+	<%= link_to 'Cancelar', compras_path, class: "btn btn-link" %>
+</div>

@@ -21,6 +21,7 @@
                 <li class="<%= is_active_controller('compras')%>"> <a href="/compras">Compras</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                 <li><a data-toggle="modal" id="open-carrinho" class="btn btn-sm btn-link" data-target="#carrinho"><i class="fa fa-shopping-cart"></i> Compra Presencial</a></li>
                 <li><%= link_to '<i class="fa fa-user"></i> Perfil'.html_safe, edit_usuario_registration_path%></li>
                 <li><%= link_to '<i class="fa fa-sign-out"></i> Sair'.html_safe, destroy_usuario_session_path, :method => :delete %></li>
             </ul>

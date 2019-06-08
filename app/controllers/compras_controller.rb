@@ -25,6 +25,7 @@ class ComprasController < ApplicationController
   # GET /compras/new
   def new
     @compra = Compra.new
+    @produtos =[{produto: Produto.find(1) , qtde: '2' },{produto: Produto.find(1) , qtde: '2' }]
   end
 
   # GET /compras/1/edit

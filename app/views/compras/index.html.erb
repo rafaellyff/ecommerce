@@ -1,6 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Compras</h1>
+<hr>
+<div class="row">
+  <div class="col-sm-2 text-center">
+    
+    <%= link_to '<i class="fa fa-shopping-cart color-primary"></i> Compra Presencial'.html_safe, catalogo_produtos_path, class: "btn btn-default" %>
+  </div>
+  <div class="col-sm-8 text-justify"> 
+    
+      Se seu cliente deseja efetuar uma compra presencial visite o catalogo e escolha os produtos com ele, depois é só finalizar a compra de maneira convencional e informar o usuário do cliente!
+  </div>
+</div>
+<hr>
+   
 <div class="table-responsive">
   <table class="table table-hover">
     <thead>
@@ -32,4 +45,3 @@
   </table>
 </div>
 
-<%= link_to '<i class="fa fa-plus"></i> Novo'.html_safe, new_compra_path, class: "btn btn-default" %>
