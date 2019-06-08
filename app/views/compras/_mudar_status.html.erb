@@ -1,0 +1,12 @@
+<div class="row m-b-lg">
+	<div class="col-sm-4 col-sm-offset-4">
+		<%= form_tag('/compras/mudar_status') do %>
+			<%= hidden_field_tag :id, @compra.id%>
+			<div class="input-group">
+
+				<%= select_tag(:status, options_for_select(["Solicitado","Pago", "Na distruidora","À caminho", "Entregue"], @compra.status), { prompt: "Status",:class => "form-control", :required => true }) %>
+				<span class="input-group-btn"> <%= submit_tag 'Atualizar', class: "btn btn-primary" %></span>
+			</div>
+		<% end %>
+	</div>
+</div>

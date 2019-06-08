@@ -16,7 +16,6 @@
 //= require jquery.turbolinks 
 //= require rails-ujs
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require jquery.mask
 //= require_tree .
 
@@ -153,15 +152,9 @@ $(document).ready(function(){
 
 
 $(document).ready(function () {
-
+  forma_pagamento();
   $( ".checkround" ).click(function() {
-    if ($("#compra_forma_pagamento_cartão_de_crédito").is(":checked")) {
-      $("#info-cartao").show();
-      $("#info-boleto").hide();
-    } else{
-      $("#info-cartao").hide();
-      $("#info-boleto").show();
-    }
+    forma_pagamento();
   }); 
 
   $(".cartao").mask("0000 0000 0000 0000");
@@ -203,4 +196,22 @@ function nextTab(elem) {
 }
 function prevTab(elem) {
   $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+
+function forma_pagamento(){
+  if ($("#compra_forma_pagamento_cartão_de_crédito").is(":checked")) {
+    $("#info-cartao").show();
+    $("#info-boleto").hide();
+  } else{
+    limpar_campos();
+    $("#info-cartao").hide();
+    $("#info-boleto").show();
+  }
+}
+
+function limpar_campos(){
+  $("#compra_numero_cartao").val("");
+  $("#compra_nome_titular").val("");
+  $("#compra_data_validade").val("");
+  $("#compra_ccv").val("");
 }

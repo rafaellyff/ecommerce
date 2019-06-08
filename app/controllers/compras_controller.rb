@@ -29,6 +29,7 @@ class ComprasController < ApplicationController
 
   # GET /compras/1/edit
   def edit
+    @produtos = ItensCompra.where(compra_id: params[:id])
   end
 
   # POST /compras
@@ -40,7 +41,7 @@ class ComprasController < ApplicationController
     @compra.data = Date.today
     @compra.hora = Time.now.strftime("%H:%M:%S")
     @compra.valor_total = params[:compra][:valor_total].to_f
-    @compra.status = "Á caminho"
+    @compra.status = "Solicitado"
 
     respond_to do |format|
       if @compra.save
@@ -80,6 +81,14 @@ class ComprasController < ApplicationController
     end
   end
 
+  def mudar_status
+    @compra = Compra.find(params[:id])
+    @compra.update(status: params[:status])
+    respond_to do |format|
+      format.html { redirect_to @compra, notice: 'Status alterado com sucesso.' }
+      format.json { render :show, status: :ok, location: @compra }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_compra

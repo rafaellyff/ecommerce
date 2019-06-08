@@ -1,6 +1,7 @@
-<h1>Editing Compra</h1>
+<h1 class="text-center">Editar Compra</h1><br>
+<%= render 'mudar_status'%>
 
 <%= render 'form', compra: @compra %>
-
-<%= link_to 'Show', @compra %> |
-<%= link_to 'Back', compras_path %>
+<div class="text-center">
+	<%= link_to 'Cancelar', compras_path, class: "btn btn-link" %>
+</div>
