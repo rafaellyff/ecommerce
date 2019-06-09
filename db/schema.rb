@@ -10,13 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_19_190856) do
+ActiveRecord::Schema.define(version: 2019_06_08_183236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categorias", force: :cascade do |t|
     t.string "descricao"
+    t.boolean "ativo", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "compra_produtos_clientes", force: :cascade do |t|
+    t.integer "cliente_id"
+    t.integer "produto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "qtd"
+  end
+
+  create_table "compras", force: :cascade do |t|
+    t.string "usuario"
+    t.date "data"
+    t.time "hora"
+    t.decimal "valor_total"
+    t.string "estado"
+    t.string "cidade"
+    t.string "cep"
+    t.string "endereco"
+    t.string "contato"
+    t.string "forma_pagamento"
+    t.string "numero_cartao"
+    t.string "nome_titular"
+    t.string "data_validade"
+    t.integer "ccv"
+    t.string "status"
     t.boolean "ativo", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,6 +58,18 @@ ActiveRecord::Schema.define(version: 2019_05_19_190856) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["usuario"], name: "index_funcionarios_on_usuario", unique: true
+  end
+
+  create_table "itens_compras", force: :cascade do |t|
+    t.bigint "compra_id"
+    t.bigint "produto_id"
+    t.decimal "valor"
+    t.integer "quantidade"
+    t.boolean "ativo", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["compra_id"], name: "index_itens_compras_on_compra_id"
+    t.index ["produto_id"], name: "index_itens_compras_on_produto_id"
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -77,6 +118,9 @@ ActiveRecord::Schema.define(version: 2019_05_19_190856) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "compras", "usuarios", column: "usuario", primary_key: "email"
   add_foreign_key "funcionarios", "usuarios", column: "usuario", primary_key: "email"
+  add_foreign_key "itens_compras", "compras"
+  add_foreign_key "itens_compras", "produtos"
   add_foreign_key "produtos", "categorias"
 end

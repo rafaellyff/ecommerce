@@ -1,6 +1,6 @@
 class ComprasController < ApplicationController
+  # skip_before_action :authenticate_usuario!, only: [:save_produtos_cliente]
   before_action :set_compra, only: [:show, :edit, :update, :destroy]
-
 
   def minhas_compras
     @compras = Compra.where(usuario: current_usuario.email,ativo: true).order(data: :desc)
@@ -11,21 +11,30 @@ class ComprasController < ApplicationController
     @compras = Compra.where(ativo: true).order(data: :desc)
   end
 
+  def save_produtos_cliente
+    produtos_string = request.raw_post
+    produtos_json = JSON.parse(produtos_string)
+    
+    co = CompraProdutosCliente.where(cliente_id: current_usuario.id)
+    co.delete_all if !produtos_json.blank?
+    
+    produtos_json.each do |produto_ind|
+      produto = Produto.find(produto_ind.select{ |k,val| k == 'produto' }.values.first)
+      qtde = produto_ind.select{ |k,val| k == 'qtde' }.values.first
+      compra_produto_cliente = CompraProdutosCliente.new cliente_id: current_usuario.id, produto_id: produto.id, qtd: qtde
+      compra_produto_cliente.save
+    end
+  end
+
   def finalizar_compra
     @compra = Compra.new
-    @produtos =[{produto: Produto.find(1) , qtde: '2' },{produto: Produto.find(1) , qtde: '2' }]
+    @produtos = get_produtos
   end
 
   # GET /compras/1
   # GET /compras/1.json
   def show
     @itens = ItensCompra.where(compra_id: params[:id])
-  end
-
-  # GET /compras/new
-  def new
-    @compra = Compra.new
-    @produtos =[{produto: Produto.find(1) , qtde: '2' },{produto: Produto.find(1) , qtde: '2' }]
   end
 
   # GET /compras/1/edit
@@ -36,8 +45,8 @@ class ComprasController < ApplicationController
   # POST /compras
   # POST /compras.json
   def create
-    @produtos =[{produto: Produto.find(1) , qtde: '2' },{produto: Produto.find(1), qtde: '2' }]
-   
+    @produtos = get_produtos
+    
     @compra = Compra.new(compra_params)
     @compra.data = Date.today
     @compra.hora = Time.now.strftime("%H:%M:%S")
@@ -91,6 +100,15 @@ class ComprasController < ApplicationController
     end
   end
   private
+    def get_produtos
+      prod = CompraProdutosCliente.where(cliente_id: current_usuario.id).pluck(:produto_id, :qtd)
+      @produtos = []
+      prod.each do |produto, qtd|
+        @produtos.push({produto: Produto.find(produto) , qtde: qtd })
+      end
+      return @produtos
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_compra
       @compra = Compra.find(params[:id])

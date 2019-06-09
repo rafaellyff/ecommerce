@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       match 'finalizar_compra', via: [:get, :post]
       match 'minhas_compras', via: [:get, :post]
       match 'mudar_status', via: [:get, :post]
+      match 'save_produtos_cliente', via: [:post]
     end
   end
   resources :funcionarios do
