@@ -25,9 +25,17 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="input-group">
-                    <input type="number" class="form-qtde" placeholder="Quantidade">
-                    <span class="input-group-btn"><button class="btn btn-primary" onclick="adiciona_produto_carrinho('<%= produto.to_json %>')"><i class="fa fa-cart-plus"></i></button></span>
+                    <input type="number" class="form-qtde" id="qtd-detalhe-carrinho-<%=produto.id%>" placeholder="Quantidade">
+                    <span class="input-group-btn"><button class="btn btn-primary" onclick="adiciona_produto_carrinho('<%= produto.to_json %>',getValueQtd('<%=produto.id%>'));"><i class="fa fa-cart-plus"></i></button></span>
                   </div>
+                  <script>
+                    function getValueQtd(id){
+                      var qtd = $('#qtd-detalhe-carrinho-'+id).val()
+                      if (qtd == '' || qtd == 0 || qtd < 0)
+                        qtd = 1;
+                      return qtd;
+                    }
+                  </script>
                 </div>
               </div>
             </div>
