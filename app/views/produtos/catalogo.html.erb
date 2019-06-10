@@ -1,7 +1,33 @@
 <div class="row">
-	<div class="col-lg-10 col-lg-offset-1">
+	<div class="col-lg-2 col-md-2 col-sm-3">
+		<h4 class="font-lato m-t-md">Filtros</h4>
+		<hr>
+		<p>Categorias:</p>
+		<% @categorias.each do |categoria|%>
+			<label class="container filtros-text-size"><%=categoria.descricao%>
+				<%= check_box_tag "categoria",categoria.id%>
+				<span class="checkmark"></span>
+			</label>
+		<%end%>
+		<hr>
+		<p>Ordenar por:</p>
+		<label class="radio filtros-text-size">Menores Preços
+		<%= radio_button_tag :ordenar_por,"preco",class: "checkround" %>
+			<span class="checkround"></span>
+		</label>
+		<label class="radio filtros-text-size"> Ordem A - Z
+			<%= radio_button_tag :ordenar_por,"nome", class: "checkround"%>
+			<span class="checkround"></span>
+		</label>
+		<label class="radio filtros-text-size"> 
+			<%= radio_button_tag :ordenar_por, "" , class: "checkround"	%>
+		</label>
+		<hr>
+		<button class="btn btn-primary btn-block btn-outline m-b-lg" id="filtrar">Filtrar</button>
+	</div>	
+	<div class="col-lg-10 col-md-10 col-sm-9" id="lista_produtos">
 		<% @produtos.each do |produto| %>
-			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			<div class="col-lg-3 col-md-4 col-md-offset-0 col-sm-5 col-sm-offset-1 col-xs-12">
 				<div class="card-produto">
 					<img alt="image" class="img-responsive" src="<%= produto.foto.url(:medium)%>">
 					<div class="descricao">
@@ -20,4 +46,3 @@
 </div>
 
 <%= render 'produtos/modal_detalhes' %>
-

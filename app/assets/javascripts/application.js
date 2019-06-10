@@ -226,3 +226,31 @@ $( document ).on('turbolinks:load', function() {
    $("#compra_ccv").val("");
  }
  
+
+function lista_categorias(){
+  var categorias = [];    
+  
+  $("input[name='categoria']:checked").each(function(){
+    categorias.push($(this).val());
+  });
+  
+  return categorias;
+}
+
+
+$(document).ready(function () {
+  $("#filtrar").click(function (){
+    var categorias =  lista_categorias();
+    var ordenar = $("input[name='ordenar_por']:checked").val();
+
+    $.ajax({
+      method: "GET",
+      url: "/produtos/filtrar_catalogo",
+      data: { categorias: categorias, ordenar: ordenar}
+    })
+    .done(function(retorno){
+      $("#lista_produtos").html( retorno );
+    
+    });
+  });
+});

@@ -1,0 +1,24 @@
+<div id="lista_produtos">
+	<%if !notice.blank?%>
+		<div class="alert alert-warning alert-dismissible fade in">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			<%= notice %>
+		</div>
+	<%end%>
+	<% @produtos.each do |produto| %>
+		<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			<div class="card-produto">
+				<img alt="image" class="img-responsive" src="<%= produto.foto.url(:medium)%>">
+				<div class="descricao">
+					
+					<p class="nome"><%= produto.nome.truncate(40, omission: '...')%></p>
+					<p class="preco">R$ <%= produto.preco.blank? ? "0.0" : number_with_precision(produto.preco.blank? ? "0.0" : produto.preco, :precision => 2, separator: ",", :delimiter => '.')%></p>
+
+
+					<button class="btn btn-primary" data-toggle="modal" data-target="#produto_<%=produto.id%>"><i class="fa fa-eye"></i></button>
+					<button class="btn btn-primary" onclick="adiciona_produto_carrinho('<%= produto.to_json %>')"><i class="fa fa-cart-plus"></i></button>
+				</div>
+			</div>
+		</div>	
+	<%end%>
+</div>

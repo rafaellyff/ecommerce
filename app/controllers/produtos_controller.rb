@@ -1,13 +1,11 @@
 class ProdutosController < ApplicationController
-  skip_before_action :authenticate_usuario!, only: [:catalogo]
+  skip_before_action :authenticate_usuario!, only: [:catalogo, :filtrar_catalogo]
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
   before_action :validate_user , only: [:index, :show, :edit]
 
   def validate_user
     if !authenticate_usuario!.admin? 
       redirect_to acesso_restrito_funcionarios_path
-      #@produtos = Produto.where(ativo: true)
-      #render catalogo_produtos_path
     end
   end
 
@@ -19,6 +17,31 @@ class ProdutosController < ApplicationController
 
   def catalogo
     @produtos = Produto.where(ativo: true)
+    @categorias = Categoria.where(ativo: true)
+  end
+
+  def filtrar_catalogo
+    if params[:categorias].blank?
+      @produtos = Produto.where(ativo: true)
+    else
+      @produtos = Produto.where(categoria_id: params[:categorias] ,ativo: true)
+    end
+
+    if !params[:ordenar].blank?
+      if params[:ordenar] == "preco"
+        @produtos = @produtos.order(preco: :asc)
+      else
+        @produtos = @produtos.order(nome: :asc)
+      end  
+    end
+
+    if @produtos.blank?
+      flash[:notice] = "Nenhum produto encontrado!"
+    else 
+      flash[:notice] = nil
+    end
+    
+    render :partial => 'produtos/filtro_catalogo'
   end
 
   # GET /produtos/1

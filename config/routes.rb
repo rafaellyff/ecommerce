@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :produtos do
   	collection do 
       get 'catalogo'
+      get 'filtrar_catalogo'
     end
   end
   resources :categorias
