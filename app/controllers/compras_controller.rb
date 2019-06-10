@@ -34,7 +34,7 @@ class ComprasController < ApplicationController
   # GET /compras/1
   # GET /compras/1.json
   def show
-    @itens = ItensCompra.where(compra_id: params[:id])
+    @itens = ItensCompra.where(compra_id: params[:id], ativo: true)
   end
 
   # GET /compras/1/edit
@@ -72,6 +72,14 @@ class ComprasController < ApplicationController
   def update
     respond_to do |format|
       if @compra.update(compra_params)
+        @itens = ItensCompra.where(compra_id: params[:id])
+        @itens.each do |item| 
+          qtde = params[("quantidade_" + item.id.to_s).to_sym]
+          valor = params[("valor_" + item.id.to_s).to_sym]
+          ativo = params[("remover_" + item.id.to_s).to_sym].nil? ? "true" : "false"
+
+          item.update(quantidade: qtde, valor: valor, ativo: ativo)
+        end
         format.html { redirect_to @compra, notice: 'Compra alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @compra }
       else

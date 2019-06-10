@@ -34,7 +34,7 @@
             </ul>
         <%else%>
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" id="open-carrinho" data-target="#carrinho" class="btn btn-sm btn-link"><i class="fa fa-shopping-cart" ></i> Carrinho</a></li>
+                <li><span class="qtd-carrinho"></span>  <a data-toggle="modal" id="open-carrinho" data-target="#carrinho" class="btn btn-sm btn-link"><i class="fa fa-shopping-cart" ></i> Carrinho</a></li>
                 <li><%= link_to "Cadastre-se", new_usuario_registration_path %></li>
                 <li><%= link_to "Entrar", new_usuario_session_path %></li>
             </ul>
@@ -42,6 +42,6 @@
     </div>
 </nav>
 
-<div class="alert-add-item" id="aviso" style="display: none;"> <span> novo produto adicionado ao carrinho </span></div>
+<div class="alert-add-item" id="aviso" style="display: none;"> <span> Novo produto adicionado ao carrinho </span></div>
 
 <%= render 'produtos/modal_carrinho' %>

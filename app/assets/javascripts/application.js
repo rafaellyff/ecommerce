@@ -286,3 +286,93 @@ $(document).ready(function () {
     });
   });
 });
+
+$(document).ready(function () {
+  $(".calcular_valor").keyup(function(){
+    valor_total_item($(this).attr("id"));
+    extrato_compra();
+  });
+
+  $("input:checkbox").change(function(){
+    var id = $(this).attr("name").replace("remover_","");
+    if ($(this).is(':checked')) {
+      if ($("input:checkbox").length - $("input:checkbox:checked").length < 1 ){
+        alert("Você não pode remover esse item, pois cada compra precisa de no mínimo 1 item");
+        $(this).prop("checked", false);
+      } else {
+        remover_item_edit(id);
+      }
+    } else{
+      add_item_edit(id);
+    }
+  })
+
+  function valor_total_item(item_id){
+    var qtde = $("input[name=quantidade_"+ item_id+"]").val();
+    var valor = $("input[name=valor_"+ item_id+"]").val();
+    var total_item = Number(qtde) * Number(valor);
+    $("#total_item_"+item_id).text("R$ " + total_item);
+  }
+
+  function extrato_compra(){
+    var total_compra = valor_geral_compra();
+    $("#extrato_valor_compra").text("R$ "+ total_compra);
+    $("#extrato_valor_total").text("R$ "+ (total_compra+50));
+    $("#compra_valor_total").val(total_compra+50);
+  }
+});
+
+function isFloatNumber(item,evt) {
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode==46)
+  {
+      var regex = new RegExp(/\./g)
+      var count = $(item).val().match(regex).length;
+      if (count > 1)
+      {
+          return false;
+      }
+  }
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+  }
+  return true;
+}
+
+function valor_geral_compra(){
+  var total_compra = 0;
+  $(".total").each(function(){
+     total_compra += Number($(this).text().replace("R$",""));
+  });
+  return total_compra
+}
+
+function isNumber(evt) {
+  evt = (evt) ? evt : window.event;
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+  }
+  return true;
+}
+
+function remover_item_edit(id){
+  var tirar_valor =  $("#total_item_"+id).text().replace("R$","");
+  var total_anterior = $("#compra_valor_total").val();
+  var total_compra = total_anterior - tirar_valor ;
+  $("#extrato_valor_compra").text("R$ "+ (total_compra- 50));
+  $("#extrato_valor_total").text("R$ "+ total_compra);
+  $("#compra_valor_total").val(total_compra);
+  $("#tr_"+id).css("background-color", "#ff9999");
+}
+
+function add_item_edit(id){
+  var add_valor =  $("#total_item_"+id).text().replace("R$","");
+  var total_anterior = $("#compra_valor_total").val();
+  var total_compra = Number(total_anterior) + Number(add_valor);
+  $("#extrato_valor_compra").text("R$ "+ (total_compra-50));
+  $("#extrato_valor_total").text("R$ "+ total_compra);
+  $("#compra_valor_total").val(total_compra);
+  $("#tr_"+id).css("background-color", "white");
+}

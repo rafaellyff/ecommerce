@@ -1,0 +1,13 @@
+<%@valor_total = 0%>
+<% @produtos.each do |produto| %>
+<tr id="tr_<%=produto.id%>">
+  <td class="text-center"> Remover <%= check_box_tag "remover_#{produto.id}"%></td>
+  <td  class="min-td-img"><img alt="image" class="img-responsive" src="<%= produto.produto.foto.url(:thumb)%>"/></td>
+  <td><%= produto.produto.nome %></td>
+  <td><%= text_field_tag produto.id, produto.valor, name: "valor_#{produto.id}",  class: "form-control calcular_valor",   onkeypress: "return isFloatNumber(this,event)" %></td>
+  <td class="text-center"><%= number_field_tag produto.id, produto.quantidade , name: "quantidade_#{produto.id}" , class: "form-control calcular_valor quantidade", min: 1, onkeypress: "return isNumber(event)" %></td>
+  <% total = produto.quantidade.to_i*produto.valor.to_f %>
+  <td id="total_item_<%=produto.id%>" class="total">R$ <%= total%></td>
+</tr>
+<% @valor_total =  @valor_total + total%>
+<% end %>
