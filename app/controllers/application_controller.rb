@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
 	protected
 
+	def validate_user
+    if !authenticate_usuario!.admin? 
+      redirect_to acesso_restrito_funcionarios_path
+    end
+  end
+  
 	def layout_by_resource
 		if devise_controller?
 			"devise"

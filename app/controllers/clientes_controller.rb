@@ -1,4 +1,5 @@
 class ClientesController < ApplicationController
+	before_action :validate_user 
 
 	def index
 		@clientes = Usuario.where("admin =? AND (deactivated =? OR deactivated IS NULL)", false, false)

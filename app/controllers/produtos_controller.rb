@@ -1,13 +1,7 @@
 class ProdutosController < ApplicationController
   skip_before_action :authenticate_usuario!, only: [:catalogo, :filtrar_catalogo]
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
-  before_action :validate_user , only: [:index, :show, :edit]
-
-  def validate_user
-    if !authenticate_usuario!.admin? 
-      redirect_to acesso_restrito_funcionarios_path
-    end
-  end
+  before_action :validate_user , only: [:index, :show, :edit, :new]
 
   # GET /produtos
   # GET /produtos.json

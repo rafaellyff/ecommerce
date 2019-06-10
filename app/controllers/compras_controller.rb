@@ -1,6 +1,7 @@
 class ComprasController < ApplicationController
   # skip_before_action :authenticate_usuario!, only: [:save_produtos_cliente]
   before_action :set_compra, only: [:show, :edit, :update, :destroy]
+  before_action :validate_user , only: [:index, :edit, :new]  
 
   def minhas_compras
     @compras = Compra.where(usuario: current_usuario.email,ativo: true).order(data: :desc)
