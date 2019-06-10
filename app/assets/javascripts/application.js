@@ -46,15 +46,30 @@ $( document ).on('turbolinks:load', function() {
      $('.moeda').bind('keypress',mask.money)
    });
  });
+
+ function count_span_qtd(){
+  var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
+  $('.qtd-carrinho').empty();
+  $('.qtd-carrinho').append(carrinho_log.length);
+ }
  
- function adiciona_produto_carrinho(produto) {
-   var carrinho = []
-   var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
- 
-   if (carrinho_log != null) carrinho = carrinho_log
- 
-   carrinho.push(JSON.parse(produto));
-   localStorage.setItem('carrinho', JSON.stringify(carrinho));
+ function adiciona_produto_carrinho(produto, qtd) {
+  for (let i = 0; i < qtd; i++) {
+    var carrinho = []
+    var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
+  
+    if (carrinho_log != null) carrinho = carrinho_log
+  
+    carrinho.push(JSON.parse(produto));
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+  }
+
+  $("#aviso").fadeIn(700, function(){
+    window.setTimeout(function(){
+      $('#aviso').fadeOut();
+      }, 2000);
+  });
+  count_span_qtd();
  }
  
  function remove_produto_carrinho(produto) {
@@ -75,6 +90,17 @@ $( document ).on('turbolinks:load', function() {
    }
    montar_carrinho();
  }
+
+ function aumentar_qtd_produto_carrinho(id) {
+  var carrinho_log = JSON.parse(localStorage.getItem('carrinho'));
+  var produto = carrinho_log.filter(el => el.id == id)[0];
+  adiciona_produto_carrinho(JSON.stringify(produto),1);
+  montar_carrinho();
+ }
+
+  function format_moeda_real(value){
+    return parseInt(value).toLocaleString('pt-BR') + ',00';
+  }
  
  function montar_carrinho() {
    $(".carrinho-body").empty();
@@ -83,16 +109,15 @@ $( document ).on('turbolinks:load', function() {
  
    if (carrinho_log.length != 0)
      $(".carrinho-footer").append(`
-       <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+       <button type="button" class="btn btn-danger" id="limpar-carrinho" data-dismiss="modal">Limpar Carrinho</button>
        <button type="button" class="btn btn-primary" id="finalizar-compra">Finalizar Compra</button>
      `);
    else
      $(".carrinho-footer").append(`
-       <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+       <button type="button" class="btn btn-default" data-dismiss="modal">Ir as compras</button>
      `);
  
    var preco_total = 0;
-   var a = jQuery.unique(carrinho_log)
    
    var carrinho_filter = carrinho_log.reduce((x, y) => x.findIndex(e=>e.id==y.id)<0 ? [...x, y]: x, [])
    
@@ -108,9 +133,10 @@ $( document ).on('turbolinks:load', function() {
              <div class='carrinho-produto-info'>
                <h5 class="card-title">` + produto.nome + `</h5>
                <p class="card-text"><b>Descrição:</b> ` + produto.descricao + `</p>
-               <p class="card-text"><b>Preço:</b> ` + produto.preco + `</p>
+               <p class="card-text"><b>Preço Unid.:</b> R$ ` + format_moeda_real(produto.preco) + `</p>
                <p class="card-text"><b>Quantidade:</b> ` + qtd + `</p>
-               <a class="btn btn-primary" onclick="remove_produto_carrinho('`+ produto.id +`')" id="remover-do-carrinho">remover do carrinho</a>
+               <a class="btn btn-danger" onclick="remove_produto_carrinho('`+ produto.id +`')" id="remover-do-carrinho"><i class="fa fa-trash"></i> Remover </a>
+               <a class="btn btn-primary" onclick="aumentar_qtd_produto_carrinho('`+ produto.id +`')"><i class="fa fa-cart-plus"></i> Adicionar mais</a>
              </div>
            </div>
          </div>
@@ -122,7 +148,7 @@ $( document ).on('turbolinks:load', function() {
  
    $(".carrinho-footer").append(`
      <div class='content-price-carrinho'>
-       <span class='price-total'>Total: R$ ` + preco_total + `</span>
+       <span class='price-total'>Total: R$ ` + format_moeda_real(preco_total) + `</span>
      </div>
      `);
 
@@ -136,9 +162,16 @@ $( document ).on('turbolinks:load', function() {
       });
       send_compra(compra_final);
     });
+
+    $("#limpar-carrinho").click(function(){
+      localStorage.setItem('carrinho', JSON.stringify([]));
+      montar_carrinho();
+    });
+    count_span_qtd();
  }
  
  $(document).ready(function(){
+  count_span_qtd();
    $("#open-carrinho").click(function(){
      montar_carrinho();
    });
@@ -152,7 +185,6 @@ $( document ).on('turbolinks:load', function() {
      dataType: 'json',
      data: JSON.stringify(dt),
      success: function(data) {
-      console.log('aqui');
       document.location.href = "/compras/finalizar_compra";
      },
      error: function(XMLHttpRequest, textStatus, errorThrown) {

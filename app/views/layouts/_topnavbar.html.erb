@@ -19,7 +19,7 @@
                 <li class="<%= is_active_controller('compras')%>"> <a href="/compras">Compras</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" id="open-carrinho" class="btn btn-sm btn-link" data-target="#carrinho"><i class="fa fa-shopping-cart"></i> Compra Presencial</a></li>
+                <li><span class="qtd-carrinho"></span> <a data-toggle="modal" id="open-carrinho" class="btn btn-sm btn-link" data-target="#carrinho"><i class="fa fa-shopping-cart"></i> Compra Presencial</a></li>
                 <li><%= link_to '<i class="fa fa-user"></i> Perfil'.html_safe, edit_usuario_registration_path%></li>
                 <li><%= link_to '<i class="fa fa-sign-out"></i> Sair'.html_safe, destroy_usuario_session_path, :method => :delete %></li>
             </ul>
@@ -28,7 +28,7 @@
                 <li class="<%= is_active_action('minhas_compras')%>"> <a href="/compras/minhas_compras">Minhas Compras</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" id="open-carrinho" class="btn btn-sm btn-link" data-target="#carrinho"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
+                <li><span class="qtd-carrinho"></span> <a data-toggle="modal" id="open-carrinho" class="btn btn-sm btn-link" data-target="#carrinho"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                 <li><%= link_to '<i class="fa fa-user"></i> Perfil'.html_safe, edit_usuario_registration_path%></li>
                 <li><%= link_to '<i class="fa fa-sign-out"></i> Sair'.html_safe, destroy_usuario_session_path, :method => :delete %></li>
             </ul>
@@ -41,4 +41,7 @@
         <%end%>
     </div>
 </nav>
+
+<div class="alert-add-item" id="aviso" style="display: none;"> <span> novo produto adicionado ao carrinho </span></div>
+
 <%= render 'produtos/modal_carrinho' %>
