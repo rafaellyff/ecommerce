@@ -19,7 +19,7 @@
 //= require jquery.mask
 //= require_tree .
 
-$( document ).on('turbolinks:load', function() {
+$(document).ready(function(){
 
   var mask = {
        money: function() {
@@ -123,12 +123,17 @@ $( document ).on('turbolinks:load', function() {
    
    carrinho_filter.forEach(produto => {
      var qtd = carrinho_log.filter(prod => prod.id == produto.id).length;
+      if (produto.id < 9) {
+      var id_imagem =  "0" + produto.id
+     } else {
+      var id_imagem = produto.id
+     }
      var produto_html = `
        <div class="col-12">
          <div class="carrinho-produto">
            <div class="carrinho-produto-body">
              <div class='carrinho-produto-img'>
-               <img alt="image" class="img-responsive" src="/system/produtos/fotos/000/000/00`+produto.id+`/medium/`+ produto.foto_file_name +`" id="prod-`+produto.id+`">
+               <img alt="image" class="img-responsive" src="/system/produtos/fotos/000/000/0`+id_imagem+`/medium/`+ produto.foto_file_name +`" id="prod-`+produto.id+`">
              </div>
              <div class='carrinho-produto-info'>
                <h5 class="card-title">` + produto.nome + `</h5>

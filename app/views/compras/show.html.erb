@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%if !notice.blank?%>
+  <div class="alert alert-success alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </div>
+<%end%>
+
 <h4><strong>Detalhes da Compra</strong></h4>
 <hr>
 <div class="row">

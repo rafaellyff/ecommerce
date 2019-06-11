@@ -13,7 +13,7 @@
         <%if !current_usuario.blank? && current_usuario.admin?%>
             <ul class="nav navbar-nav">
                 <li class="<%= is_active_controller('categorias')%>"><a href="/categorias">Categorias</a></li>
-                <li class="<%= is_active_controller('produtos')%>"> <a href="/produtos">Produtos</a></li>
+                <li class="<%= is_active_controller('produtos') %>"> <a href="/produtos">Produtos</a></li>
                 <li class="<%= is_active_controller('funcionarios')%>"> <a href="/funcionarios">Funcionários</a></li>
                 <li class="<%= is_active_controller('clientes')%>"> <a href="/clientes">Clientes</a></li>
                 <li class="<%= is_active_controller('compras')%>"> <a href="/compras">Compras</a></li>
@@ -25,6 +25,7 @@
             </ul>
         <%elsif !current_usuario.blank? %>
             <ul class="nav navbar-nav">
+                <li class="<%= is_active_action('catalogo')%>"> <a href="/produtos/catalogo">Catalógo</a></li>
                 <li class="<%= is_active_action('minhas_compras')%>"> <a href="/compras/minhas_compras">Minhas Compras</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

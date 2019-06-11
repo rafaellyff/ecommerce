@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Produtos</h1>
+<%= link_to '<i class="fa fa-plus"></i> Novo'.html_safe, new_produto_path, class: "btn btn-default" %>
 <div class="table-responsive">
   <table class="table table-hover">
     <thead>
@@ -31,4 +32,4 @@
   </table>
 </div>  
 
-<%= link_to '<i class="fa fa-plus"></i> Novo'.html_safe, new_produto_path, class: "btn btn-default" %>
+
