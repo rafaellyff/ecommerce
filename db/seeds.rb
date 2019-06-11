@@ -5,6 +5,3 @@
 
 Usuario.create! :nome => 'Administrador', :email => 'smd.trabalhos@gmail.com', :password => '123456', :password_confirmation => '123456', :admin => true
 Funcionario.create! :usuario => 'smd.trabalhos@gmail.com', :salario => "1500.0" ,:ativo => true
-
-categoria = Categoria.create! :descricao => 'Eletrônicos'
-Produto.create! :nome => 'Notebook Asus Predator', :descricao => 'Computador de Portátil', preco: "5000.0", categoria_id: categoria.id
