@@ -53,7 +53,13 @@ Com o comando acima você estatá instalando a lista de dependências que são n
 
 Após rodar esse comando você vai ter criado todas as tabelas do seu projeto no schema que você no tópico anterior.
 
-#### 5. Subindo o servidor
+#### 5. Criando os registros no Banco de Dados
+
+> rake db:seed
+
+Após rodar esse comando você terá criado registros em algumas tabelas que serviram de base para o funcionamento do sistema.
+
+#### 6. Subindo o servidor
 
 > rails s 
 
